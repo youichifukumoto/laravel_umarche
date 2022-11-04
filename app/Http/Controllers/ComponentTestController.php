@@ -10,7 +10,8 @@ class ComponentTestController extends Controller
     //
     public function showComponent1()
     {
-      return view('tests.component-test1');
+      $massage = 'メッセージ';
+      return view('tests.component-test1',compact('massage'));
     }
 
     public function showComponent2()
