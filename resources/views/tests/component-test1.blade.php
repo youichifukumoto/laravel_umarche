@@ -3,4 +3,5 @@
 テスト1
 
 <x-tests.card title="タイトル" content="本文" :massage="$massage"/>
+<x-tests.card title="タイトル100" />
 </x-tests.app>
