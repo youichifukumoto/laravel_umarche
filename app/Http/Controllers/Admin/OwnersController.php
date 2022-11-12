@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner; //エロくアント
+use App\Models\Brand;
 use Illuminate\Support\Facades\DB;//クエリビルダー
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Throwable;
+use Illuminate\Support\Facades\Log;
 
 class OwnersController extends Controller
 {
@@ -68,11 +71,29 @@ class OwnersController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-             Owner::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        try{
+            DB::transaction(function () use($request) {
+                $owner = Owner::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                Brand::create([
+                    'owner_id'=>$owner->id,
+                    'brand_name'=>'ブランド名を入力',
+                    'information'=>'',
+                    'filename'=>'',
+                    'is_selling'=>true,
+                ]);
+            }, 2);
+        }
+        catch(Throwable $e){
+           Log::error($e);
+           throw $e;
+        }
+
+
 
         return redirect()
         ->route('admin.owners.index')

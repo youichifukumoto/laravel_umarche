@@ -10,6 +10,14 @@ class Brand extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'owner_id',
+        'brand_name',
+        'information',
+        'filename',
+        'is_selling',
+    ];
+
     public function owner()
     {
         return $this->belongsTo(Owner::class);
