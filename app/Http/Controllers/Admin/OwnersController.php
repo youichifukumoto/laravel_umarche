@@ -37,7 +37,7 @@ class OwnersController extends Controller
         //   ]);
 
         // dd($e_all,$q_get, $q_first, $c_test);
-        $owners = Owner::select('id', 'name', 'email', 'created_at')->get();
+        $owners = Owner::select('id', 'name', 'email', 'created_at')->paginate(10);
         return view('admin.owners.index', compact('owners'));
     }
 
@@ -156,6 +156,10 @@ class OwnersController extends Controller
     public function expiredOwnerDestroy($id)
     {
         Owner::onlyTrashed()->findOrFail($id)->forceDelete();
-        return redirect()->route('admin.expired-owners.index');
+        return redirect()->route('admin.expired-owners.index')
+        ->with([
+            'message' => 'メーカー情報を完全に削除しました。',
+            'status' => 'alert'
+        ]);
     }
 }
