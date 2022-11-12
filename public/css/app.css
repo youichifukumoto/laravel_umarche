@@ -750,6 +750,9 @@ select {
 .mt-10 {
   margin-top: 2.5rem;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
 .mb-7 {
   margin-bottom: 1.75rem;
 }
@@ -1601,6 +1604,20 @@ select {
 
   .md\:border-l {
     border-left-width: 1px;
+  }
+
+  .md\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .md\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 @media (min-width: 1024px) {

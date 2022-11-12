@@ -88,7 +88,7 @@
         </div>
     </nav>
           <div>
-                <p class="text-sm text-gray-700 leading-5 text-center mt-2">
+                <p class="text-sm text-gray-700 leading-5 text-center mt-2 mb-10">
                     <span class="font-medium">{{ $paginator->total() }}</span>
                     件中
                     @if ($paginator->firstItem())

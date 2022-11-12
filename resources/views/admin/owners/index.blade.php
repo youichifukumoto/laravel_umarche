@@ -14,12 +14,11 @@
                     <div class="container md:px-5 mx-auto">
                        <x-flash-message status="session('status')"/>
 
-                        <div class="flex justify-end mb-4">
-                            <button onclick="location.href='{{ route('admin.owners.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">新規登録</button>
-                        </div>
-
                         <div class="lg:w-2/3 w-full mx-auto overflow-auto">
-                        <table class="table-auto w-full text-left whitespace-no-wrap">
+                             <div class="flex justify-end mb-4 mt-6">
+                                <button onclick="location.href='{{ route('admin.owners.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">新規登録</button>
+                             </div>
+                           <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">メーカー名</th>
