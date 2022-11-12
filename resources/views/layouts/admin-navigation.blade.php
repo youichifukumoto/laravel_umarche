@@ -18,8 +18,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.owners.index')" :active="request()->routeIs('admin.owners.index')">
-                        オーナー管理
+                        メーカー管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('adminexpired-owners.index')">
+                        期限切れメーカー一覧
+                    </x-nav-link>
+
                 </div>
             </div>
 
