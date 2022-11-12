@@ -100,6 +100,54 @@ class OwnerSeeder extends Seeder
                 'password' => Hash::make('password123'),
                 'created_at' => '2021/01/01 11:11:11'
             ],
+            [
+                'name' => 'test15',
+                'email' => 'test150@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test16',
+                'email' => 'test160@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test17',
+                'email' => 'test170@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test18',
+                'email' => 'test180@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test19',
+                'email' => 'test190@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test20',
+                'email' => 'test200@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test21',
+                'email' => 'test210@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
+            [
+                'name' => 'test22',
+                'email' => 'test220@test.com',
+                'password' => Hash::make('password123'),
+                'created_at' => '2021/01/01 11:11:11'
+            ],
         ]);
     }
 }
