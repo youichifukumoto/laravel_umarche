@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($brands as $brand)
-                    <div class="w-1/2 p-4"> {{-- このw-2で画面の表示を2分割している--}}
+                    <div class="p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
                          <a href="{{ route('owner.brands.edit', ['brand' => $brand->id]) }}">
                       <div class="border rounded-md p-4">
                           <div class="mb-4">

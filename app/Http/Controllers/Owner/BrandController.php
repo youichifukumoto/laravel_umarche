@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Brand;
+use Illuminate\Support\Facades\Storage;
+
 
 class BrandController extends Controller
 {
@@ -39,12 +41,18 @@ class BrandController extends Controller
 
     public function edit($id)
     {
-        dd(Brand::findOrFail($id));
-
+        $brand = brand::findOrFail($id);
+        return view('owner.brands.edit', compact('brand'));
     }
 
     public function update(Request $request, $id)
     {
+        //画像のアップロード処理
+        $imageFile = $request->image; //一時保存
+        if(!is_null($imageFile) && $imageFile->isValid() ){
+          Storage::putFile('public/brands', $imageFile);
+        }
 
+        return redirect()->route('owner.brands.index');
     }
 }
