@@ -9,6 +9,7 @@ use App\Models\Brand;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
 use App\Http\Requests\UploadImageRequest;
+use App\Services\ImageService;
 
 class BrandController extends Controller
 {
@@ -51,16 +52,20 @@ class BrandController extends Controller
         //画像のアップロード処理
         $imageFile = $request->image; //一時保存
         if(!is_null($imageFile) && $imageFile->isValid() ){
-            //   Storage::putFile('public/brands', $imageFile); //リサイズ無しの場合
-            $fileName = uniqid(rand().'_');
-            $extension = $imageFile->extension();
-            $fileNameToStore = $fileName . '.' . $extension;
-            $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+            $fileNameToStore = ImageService::upload($imageFile, 'brands');
 
-            Storage::put('public/brands/' . $fileNameToStore, $resizedImage);
+            //(画像をリサイズしない時は下の一行のコードを使う)
+                         // Storage::putFile('public/brands', $imageFile); //リサイズ無しの場合
+
+            //(app\services\imageService.phpに下記は移動)
+                        // $fileName = uniqid(rand().'_');
+                        // $extension = $imageFile->extension();
+                        // $fileNameToStore = $fileName . '.' . $extension;
+                        // $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+
+            // Storage::put('public/brands/' . $fileNameToStore, $resizedImage);
 
         }
-
-            return redirect()->route('owner.brands.index');
+        return redirect()->route('owner.brands.index');
     }
 }
