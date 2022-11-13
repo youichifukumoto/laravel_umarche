@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
 
 class BrandController extends Controller
 {
@@ -45,7 +46,7 @@ class BrandController extends Controller
         return view('owner.brands.edit', compact('brand'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         //画像のアップロード処理
         $imageFile = $request->image; //一時保存
