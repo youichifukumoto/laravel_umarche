@@ -10,7 +10,27 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($brands as $brand)
-                        {{ $brand -> brand_name }}
+                    <div class="w-1/2 p-4"> {{-- このw-2で画面の表示を2分割している--}}
+                         <a href="{{ route('owner.brands.edit', ['brand' => $brand->id]) }}">
+                      <div class="border rounded-md p-4">
+                          <div class="mb-4">
+                           @if ($brand->is_selling)
+                             <span class="border p-2 rounded-md bg-blue-400 text-white">受注受付中</span>
+                           @else
+                             <span class="border p-2 rounded-md bg-red-400 text-white">受注終了</span>
+                           @endif
+                          </div>
+                          <div class="text-xl">{{ $brand -> brand_name }}</div>
+                          <div>
+                              @if (empty($brand->filename))
+                              <img src="{{ asset('images/no_image.jpg')}}">
+                              @else
+                              <img src="{{ asset('storage/brands/' . $brand->filename)}}">
+                              @endif
+                          </div>
+                      </div>
+                      </a>
+                    </div>
                     @endforeach
                 </div>
             </div>

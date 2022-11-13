@@ -30,8 +30,8 @@ class BrandController extends Controller
 
     public function index()
     {
-          $ownerId = Auth::id();
-          $brands = Brand::where('owner_id', $ownerId)->get();
+        //   $ownerId = Auth::id();
+          $brands = Brand::where('owner_id', Auth::id())->get();
 
           return view('owner.brands.index', compact('brands'));
     }
