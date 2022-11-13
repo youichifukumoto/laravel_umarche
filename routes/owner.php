@@ -8,6 +8,7 @@ use App\Http\Controllers\Owner\Auth\NewPasswordController;
 use App\Http\Controllers\Owner\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
+use App\Http\Controllers\Owner\BrandController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('owner.welcome');
+});
+
+Route::prefix('brands')->middleware('auth:owners')->group(function () {
+    Route::get('index', [brandController::class, 'index'])->name('brands.index');
+    Route::get('edit/{brand}', [brandController::class, 'edit'])->name('brands.edit');
+    Route::post('update/{brand}', [brandController::class, 'update'])->name('brands.update');
 });
 
 Route::get('/dashboard', function () {

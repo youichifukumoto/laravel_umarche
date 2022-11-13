@@ -25,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.welcome');
 // });
 
-Route::resource('owners', OwnersController::class) ->middleware('auth:admin')->except(['show']);
+Route::resource('owners', OwnersController::class)
+->middleware('auth:admin')->except(['show']);
 
 Route::prefix('expired-owners')-> middleware('auth:admin')->group(function(){
 Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
