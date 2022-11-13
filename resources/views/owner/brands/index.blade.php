@@ -17,7 +17,7 @@
                            @if ($brand->is_selling)
                              <span class="border p-2 rounded-md bg-blue-400 text-white">受注受付中</span>
                            @else
-                             <span class="border p-2 rounded-md bg-red-400 text-white">受注終了</span>
+                             <span class="border p-2 rounded-md bg-red-400 text-white">受注受付終了</span>
                            @endif
                           </div>
                           <div class="text-xl">{{ $brand -> brand_name }}</div>
