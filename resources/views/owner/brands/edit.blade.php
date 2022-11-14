@@ -15,8 +15,35 @@
                             <div class="-m-2">
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
+                                        <label for="brand_name" class="leading-7 text-sm text-gray-600">ブランド名 ※必須</label>
+                                        <input type="text" id="brand_name" name="brand_name" value="{{ $brand->brand_name }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    </div>
+                                </div>
+                                <div class="p-2 w-2/3 mx-auto">
+                                    <div class="relative">
+                                        <div class="w-50">
+                                            <x-brand-thumbnail :filename="$brand->filename" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-2 w-2/3 mx-auto">
+                                    <div class="relative">
                                         <label for="image" class="leading-7 text-sm text-gray-600">ブランドイメージ画像</label>
                                         <input type="file" id="image" name="image" accept=“image/png,image/jpeg,image/jpg” class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    </div>
+                                </div>
+                                 <div class="p-2 w-2/3 mx-auto">
+                                    <div class="relative flex justify-around">
+                                        <div><input class="mr-2" type="radio" name="is_selling" value="1" @if ($brand->is_selling === 1){@checked}
+                                        @endif>受注受付中</div>
+                                        <div><input class="mr-2" type="radio" name="is_selling" value="0" @if ($brand->is_selling === 0){@checked}
+                                        @endif>受注受付終了</div>
+                                    </div>
+                                 </div>
+                                <div class="p-2 w-2/3 mx-auto">
+                                    <div class="relative">
+                                        <label for="information" class="leading-7 text-sm text-gray-600">ブランド情報 </label>
+                                        <textarea id="information" name="information" rows="5" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $brand->information }}</textarea>
                                     </div>
                                 </div>
                                 <div class="p-2 w-full flex justify-around mt-4">

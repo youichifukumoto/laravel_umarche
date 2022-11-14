@@ -49,6 +49,12 @@ class BrandController extends Controller
 
     public function update(UploadImageRequest $request, $id)
     {
+        $request->validate([
+            'brand_name' => ['required', 'string', 'max:50'],
+            'information' => ['string',  'max:1000'],
+            'is_selling' => ['required'],
+        ]);
+
         //画像のアップロード処理
         $imageFile = $request->image; //一時保存
         if(!is_null($imageFile) && $imageFile->isValid() ){
@@ -64,8 +70,22 @@ class BrandController extends Controller
                         // $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
 
             // Storage::put('public/brands/' . $fileNameToStore, $resizedImage);
-
         }
-        return redirect()->route('owner.brands.index');
+        $brand = Brand::findOrFail($id);
+        $brand->brand_name = $request->brand_name;
+        $brand->information = $request->information;
+        $brand->is_selling = $request->is_selling;
+        if
+        (!is_null($imageFile) && $imageFile->isValid()){
+            $brand->filename = $fileNameToStore;
+        }
+
+        $brand->save();
+
+        return redirect()->route('owner.brands.index')
+        ->with([
+            'message' => 'ブランド情報を更新しました。',
+            'status' => 'info'
+        ]);
     }
 }

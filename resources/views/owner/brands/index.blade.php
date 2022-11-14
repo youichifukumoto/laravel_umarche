@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                      <x-flash-message status="session('status')"/>
                     @foreach ($brands as $brand)
                     <div class="p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
                          <a href="{{ route('owner.brands.edit', ['brand' => $brand->id]) }}">
@@ -21,13 +22,7 @@
                            @endif
                           </div>
                           <div class="text-xl">{{ $brand -> brand_name }}</div>
-                          <div>
-                              @if (empty($brand->filename))
-                              <img src="{{ asset('images/no_image.jpg')}}">
-                              @else
-                              <img src="{{ asset('storage/brands/' . $brand->filename)}}">
-                              @endif
-                          </div>
+                          <x-brand-thumbnail  :filename="$brand->filename" />
                       </div>
                       </a>
                     </div>
