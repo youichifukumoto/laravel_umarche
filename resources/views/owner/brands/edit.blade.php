@@ -22,7 +22,7 @@
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
                                         <div class="w-50">
-                                            <x-brand-thumbnail :filename="$brand->filename" />
+                                         <x-thumbnail  :filename="$brand->filename" type="brands" />
                                         </div>
                                     </div>
                                 </div>
@@ -34,10 +34,16 @@
                                 </div>
                                  <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative flex justify-around">
-                                        <div><input class="mr-2" type="radio" name="is_selling" value="1" @if ($brand->is_selling === 1){@checked}
-                                        @endif>受注受付中</div>
-                                        <div><input class="mr-2" type="radio" name="is_selling" value="0" @if ($brand->is_selling === 0){@checked}
-                                        @endif>受注受付終了</div>
+                                        <label for="is_selling">
+                                            <input class="mr-2" id="is_selling" type="radio" name="is_selling" value="1" @if ($brand->is_selling === 1){
+                                                checked
+                                            }
+                                        @endif>受注受付中</label>
+                                        <label for="close">
+                                            <input class="mr-2" id="close" type="radio" name="is_selling" value="0" @if ($brand->is_selling === 0){
+                                                checked
+                                            }
+                                        @endif>受注受付終了</label>
                                     </div>
                                  </div>
                                 <div class="p-2 w-2/3 mx-auto">

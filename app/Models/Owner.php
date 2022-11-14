@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Brand;
+use App\Models\Image;
 
 class Owner extends Authenticatable
 {
@@ -45,5 +46,10 @@ class Owner extends Authenticatable
     public function brand()
     {
         return $this->hasOne(Brand::class);
+    }
+
+    public function image()
+    {
+        return $this->hasMany(Image::class);
     }
 }
