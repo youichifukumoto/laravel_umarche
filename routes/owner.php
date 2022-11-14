@@ -9,6 +9,7 @@ use App\Http\Controllers\Owner\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use App\Http\Controllers\Owner\BrandController;
+use App\Http\Controllers\Owner\ImageController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::prefix('brands')->middleware('auth:owners')->group(function () {
     Route::get('edit/{brand}', [brandController::class, 'edit'])->name('brands.edit');
     Route::post('update/{brand}', [brandController::class, 'update'])->name('brands.update');
 });
+
+Route::resource('images', ImageController::class)
+->middleware('auth:owners')->except(['show']);
 
 Route::get('/dashboard', function () {
     return view('owner.dashboard');
