@@ -15,11 +15,11 @@
                              </div>
                              <div class="flex flex-wrap">
                              @foreach ($images as $image)
-                                <div class="w-1/4 p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
+                                <div class="w-1/4 p-1 md:p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
                                 <a href="{{ route('owner.images.edit', ['image' => $image->id]) }}">
                                 <div class="border rounded-md p-4">
-                                <div class="text-xl">{{ $image->title }}</div>
                                 <x-thumbnail  :filename="$image->filename" type="products" />
+                                <div class="text-xl text-gray-700">{{ $image->title }}</div>
                                 </div>
                                 </a>
                              </div>

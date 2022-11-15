@@ -58,7 +58,7 @@ class BrandController extends Controller
         //画像のアップロード処理
         $imageFile = $request->image; //一時保存
         if(!is_null($imageFile) && $imageFile->isValid() ){
-            $fileNameToStore = ImageService::upload($imageFile, 'brands');
+            $fileNameToStore = ImageService::upload_brand_image($imageFile, 'brands');
 
             //(画像をリサイズしない時は下の一行のコードを使う)
                          // Storage::putFile('public/brands', $imageFile); //リサイズ無しの場合
