@@ -11,6 +11,7 @@ use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use App\Http\Controllers\Owner\BrandController;
 use App\Http\Controllers\Owner\ImageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Owner\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,9 @@ Route::prefix('brands')->middleware('auth:owners')->group(function () {
 });
 
 Route::resource('images', ImageController::class)
+->middleware('auth:owners')->except(['show']);
+
+Route::resource('products', ProductController::class)
 ->middleware('auth:owners')->except(['show']);
 
 Route::get('/dashboard', function () {
