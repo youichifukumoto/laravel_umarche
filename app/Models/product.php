@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Brand;
 use App\Models\SecondaryCategory;
 use App\Models\image;
+use App\Models\stock;
 
 class product extends Model
 {
@@ -25,5 +26,10 @@ class product extends Model
     public function imageFirst()
     {
         return $this->belongsTo(Image::class, 'image1', 'id');
+    }
+
+    public function stock()
+    {
+        return $this->hasMany(stock::class);
     }
 }
