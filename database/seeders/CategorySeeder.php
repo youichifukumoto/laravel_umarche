@@ -38,12 +38,6 @@ class CategorySeeder extends Seeder
 
         DB::table('secondary_categories')->insert([
             [
-                'name' => '全て',
-                'sort_order' => 1,
-                'primary_category_id' => 1
-            ],
-
-            [
                 'name' => 'プルオーバー',
                 'sort_order' => 2,
                 'primary_category_id' => 1
@@ -59,12 +53,6 @@ class CategorySeeder extends Seeder
                 'name' => 'パンツ',
                 'sort_order' => 4,
                 'primary_category_id' => 1
-            ],
-
-            [
-                'name' => '全て',
-                'sort_order' => 1,
-                'primary_category_id' => 2
             ],
 
             [
