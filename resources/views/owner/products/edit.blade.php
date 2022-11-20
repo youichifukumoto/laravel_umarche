@@ -74,7 +74,7 @@
 
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="quantity" class="leading-7 text-sm text-gray-600">下記数量を入力後、次項目でその数量分を（追加するor削除する）選択して完了です。</label>
+                                        <label for="quantity" class="leading-7 text-sm text-gray-600">下記数量を入力後、次項目でその数量分を（増やすor減らす）選択して完了です。</label>
                                         <input type="number" id="quantity" name="quantity" value="0" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <span class="text-sm">0〜999の範囲で入力してください</span>
                                     </div>
@@ -83,11 +83,11 @@
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative flex justify-around">
                                         <label for="is_selling">
-                                            <input class="mr-2" id="is_selling" type="radio" name="type" value="1"
-                                            checked>追加する</label>
+                                            <input class="mr-2" id="is_selling" type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['add'] }}"
+                                            checked>増やす</label>
                                         <label for="close">
-                                            <input class="mr-2" id="close" type="radio" name="type" value="2">
-                                            削減する</label>
+                                            <input class="mr-2" id="close" type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['reduce'] }}">
+                                            減らす</label>
                                     </div>
                                  </div>
 
@@ -108,7 +108,7 @@
                                 </div>
 
                                 <div class="p-2 w-2/3 mx-auto">
-                                    <label for="category" class="leading-7 text-sm text-gray-600">商品画像</label>
+                                    <label class="leading-7 text-sm text-gray-600">商品画像</label>
                                 </div>
                                 <x-select-image :images="$images" currentId="{{$product->image1}}" currentImage="{{$product->imageFirst->filename ?? ''}}" name="image1" />
                                 <x-select-image :images="$images" currentId="{{$product->image2}}" currentImage="{{$product->imageSecond->filename ?? ''}}" name="image2" />
