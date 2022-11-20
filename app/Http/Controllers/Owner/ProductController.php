@@ -12,6 +12,7 @@ use App\Models\Stock;
 use App\Models\Brand;
 use App\Models\PrimaryCategory;
 use App\Models\Owner;
+use App\Http\Requests\ProductRequest;
 
 
 
@@ -43,58 +44,34 @@ class ProductController extends Controller
         return view('owner.products.index', compact('ownerInfo'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
     public function create()
     {
-        $brands = Brand::where('owner_id', Auth::id())
+        $brands = Brand::where('owner_id', Auth::id())                               //ブランドの外部キー取得
         ->select('id','brand_name')->get();
 
-        $images =  Image::where('owner_id', Auth::id())
+        $images =  Image::where('owner_id', Auth::id())                              //画像の外部キー取得
         ->select('id', 'title', 'filename')
         ->orderBy('updated_at', 'desc')
         ->get();
 
-        $categories = PrimaryCategory::with('secondary')->get();
+        $categories = PrimaryCategory::with('secondary')->get();                     //カテゴリーの外部キー取得
 
         return view('owner.products.create', compact('brands', 'images', 'categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'brand_id'=> ['required', 'exists:brands,id'],
-            'number' => ['required', 'string', 'max:50'],
-            'name' => ['required', 'string', 'max:50'],
-            'information' => ['nullable', 'string', 'max:1000'],
-            'price' => ['required', 'integer'],
-            'sort_order' => ['required', 'integer'],
-            'price' => ['nullable', 'integer'],
-            'quantity' => ['required', 'integer'],
-            'category' => ['required', 'exists:secondary_categories,id'],
-            'image1' => ['nullable', 'exists:images,id'],
-            'image2' => ['nullable', 'exists:images,id'],
-            'image3' => ['nullable', 'exists:images,id'],
-            'image4' => ['nullable', 'exists:images,id'],
-            'image5' => ['nullable', 'exists:images,id'],
-            'image6' => ['nullable', 'exists:images,id'],
-            'image7' => ['nullable', 'exists:images,id'],
-            'image8' => ['nullable', 'exists:images,id'],
-            'image9' => ['nullable', 'exists:images,id'],
-            'image10' => ['nullable', 'exists:images,id'],
-            'is_selling' => ['required'],
-        ]);
 
-        try {
+
+
+
+
+    public function store(ProductRequest $request)
+    {
+        try {                                                          //トランザクション処理…商品を登録したらstock（在庫）も生成する。
             DB::transaction(function () use ($request) {
                 $product = Product::create([
                     'number' => $request->number,
@@ -136,39 +113,108 @@ class ProductController extends Controller
             ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function edit($id)
     {
-        //
+
+        $product = Product::findOrFail($id);                            //特定の商品を指定する
+        $quantity = Stock::where('product_id',$product->id)             //指定した商品の在庫の在庫を指定して在庫数を$quantityに代入
+        ->sum('quantity');
+
+
+
+        $brands = Brand::where('owner_id', Auth::id())                  //ブランドの外部キー取得
+        ->select('id', 'brand_name')->get();
+
+        $images =  Image::where('owner_id', Auth::id())                 //画像の外部キー取得
+        ->select('id', 'title', 'filename')
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+        $categories = PrimaryCategory::with('secondary')->get();        //カテゴリーの外部キー取得
+
+        return view('owner.products.edit',compact('product', 'quantity', 'brands', 'images', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+
+
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $request->validate([
+          'current_quantity' => ['required', 'integer'],
+        ]);
+
+        $product = Product::findOrFail($id);
+        $quantity = Stock::where('product_id', $product->id)             //指定した商品の在庫の在庫を指定して在庫数を$quantityに代入
+        ->sum('quantity');
+
+        if($request->current_quantity !== $quantity){
+            $id = $request->route()->parameter('product'); //imageのid取得
+            return redirect()->route('owner.products.edit', ['product' => $id])
+            ->with([
+                'message' => 'このコミットの途中に在庫数に変更がありました。再度確認をしてください。',
+                'status' => 'alert'
+            ]);;
+
+        }else{
+            try {                                                          //トランザクション処理…商品を登録したらstock（在庫）も生成する。
+                DB::transaction(function () use ($request, $product) {
+                        $product->number = $request->number;
+                        $product->name = $request->name;
+                        $product->information = $request->information;
+                        $product->price = $request->price;
+                        $product->sort_order = $request->sort_order;
+                        $product->brand_id = $request->brand_id;
+                        $product->secondary_category_id = $request->category;
+                        $product->image1 = $request->image1;
+                        $product->image2 = $request->image2;
+                        $product->image3 = $request->image3;
+                        $product->image4 = $request->image4;
+                        $product->image5 = $request->image5;
+                        $product->image6 = $request->image6;
+                        $product->image7 = $request->image7;
+                        $product->image8 = $request->image8;
+                        $product->image9 = $request->image9;
+                        $product->image10 = $request->image10;
+                        $product->is_selling = $request->is_selling;
+                        $product->save();
+
+                    if($request->type === '1'){
+                        $newQuantity = $request->quantity;
+                    }
+                    if($request->type === '2'){
+                        $newQuantity = $request->quantity * -1;
+                    }
+                    Stock::create([
+                        'product_id' => $product->id,
+                        'type' => $request->type,
+                        'quantity' => $newQuantity
+
+                    ]);
+                }, 2);
+            } catch (Throwable $e) {
+                Log::error($e);
+                throw $e;
+            }
+
+            return redirect()
+            ->route('owner.products.index')
+            ->with([
+                'message' => '商品情報を更新しました。',
+                'status' => 'info'
+            ]);
+
+        }
+
     }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.

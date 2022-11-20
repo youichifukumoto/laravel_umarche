@@ -48,6 +48,42 @@ class product extends Model
     {
         return $this->belongsTo(Image::class, 'image1', 'id');
     }
+    public function imageSecond()
+    {
+        return $this->belongsTo(Image::class, 'image2', 'id');
+    }
+    public function imageThird()
+    {
+        return $this->belongsTo(Image::class, 'image3', 'id');
+    }
+    public function imageFourth()
+    {
+        return $this->belongsTo(Image::class, 'image4', 'id');
+    }
+    public function imageFifth()
+    {
+        return $this->belongsTo(Image::class, 'image5', 'id');
+    }
+    public function imageSixth()
+    {
+        return $this->belongsTo(Image::class, 'image6', 'id');
+    }
+    public function imageSeventh()
+    {
+        return $this->belongsTo(Image::class, 'image7', 'id');
+    }
+    public function imageEighth()
+    {
+        return $this->belongsTo(Image::class, 'image8', 'id');
+    }
+    public function imageNinth()
+    {
+        return $this->belongsTo(Image::class, 'image9', 'id');
+    }
+    public function imageTenth()
+    {
+        return $this->belongsTo(Image::class, 'image10', 'id');
+    }
 
     public function stock()
     {
