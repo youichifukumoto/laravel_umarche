@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Image;
+use Illuminate\Support\Facades\DB;
 use App\Models\product;
+use App\Models\Stock;
+use App\Models\Brand;
 use App\Models\PrimaryCategory;
 use App\Models\Owner;
-use App\Models\Brand;
+
+
 
 class ProductController extends Controller
 {
@@ -67,8 +71,69 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        
+        $request->validate([
+            'brand_id'=> ['required', 'exists:brands,id'],
+            'number' => ['required', 'string', 'max:50'],
+            'name' => ['required', 'string', 'max:50'],
+            'information' => ['nullable', 'string', 'max:1000'],
+            'price' => ['required', 'integer'],
+            'sort_order' => ['required', 'integer'],
+            'price' => ['nullable', 'integer'],
+            'quantity' => ['required', 'integer'],
+            'category' => ['required', 'exists:secondary_categories,id'],
+            'image1' => ['nullable', 'exists:images,id'],
+            'image2' => ['nullable', 'exists:images,id'],
+            'image3' => ['nullable', 'exists:images,id'],
+            'image4' => ['nullable', 'exists:images,id'],
+            'image5' => ['nullable', 'exists:images,id'],
+            'image6' => ['nullable', 'exists:images,id'],
+            'image7' => ['nullable', 'exists:images,id'],
+            'image8' => ['nullable', 'exists:images,id'],
+            'image9' => ['nullable', 'exists:images,id'],
+            'image10' => ['nullable', 'exists:images,id'],
+            'is_selling' => ['required'],
+        ]);
+
+        try {
+            DB::transaction(function () use ($request) {
+                $product = Product::create([
+                    'number' => $request->number,
+                    'name' => $request->name,
+                    'information' => $request->information,
+                    'price' => $request->price,
+                    'sort_order' => $request->sort_order,
+                    'brand_id' => $request->brand_id,
+                    'secondary_category_id' => $request->category,
+                    'image1' => $request->image1,
+                    'image2' => $request->image2,
+                    'image3' => $request->image3,
+                    'image4' => $request->image4,
+                    'image5' => $request->image5,
+                    'image6' => $request->image6,
+                    'image7' => $request->image7,
+                    'image8' => $request->image8,
+                    'image9' => $request->image9,
+                    'image10' => $request->image10,
+                    'is_selling' => $request->is_selling,
+                ]);
+
+                Stock::create([
+                    'product_id' => $product->id,
+                    'type' => 1,
+                    'quantity' => $request->quantity,
+                ]);
+            }, 2);
+        } catch (Throwable $e) {
+            Log::error($e);
+            throw $e;
+        }
+
+        return redirect()
+            ->route('owner.products.index')
+            ->with([
+                'message' => '商品登録しました。',
+                'status' => 'info'
+            ]);
     }
 
     /**
