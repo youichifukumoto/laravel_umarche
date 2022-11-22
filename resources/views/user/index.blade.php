@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            ホーム
+            商品一覧
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                      <div class="flex flex-wrap">
                         @foreach ($products as $product)
                             <div class="w-1/4 p-1 md:p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
-                                <a href="">
+                                <a href="{{ route('user.items.show', ['item' => $product->id]) }}">
                                   <div class="border rounded-md p-4">
                                   <x-thumbnail  filename="{{$product->filename ?? ''}}" type="products" />
                                      <div class="mt-4">
