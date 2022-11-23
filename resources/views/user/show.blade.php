@@ -123,9 +123,8 @@
             </div>
        </div>
     </div>
-
-      <div class="modal micromodal-slide z-100"  id="modal-1" aria-hidden="true">
-        <div class="modal__overlay z-100" tabindex="-1" data-micromodal-close>
+      <div class="relative modal micromodal-slide"  id="modal-1" aria-hidden="true">
+        <div class="modal__overlay z-10" tabindex="-1" data-micromodal-close>
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
             <header class="modal__header">
             <h2 class="text-x1 text-gray-700 modal__title" id="modal-1-title">
@@ -145,5 +144,5 @@
         </div>
         </div>
     </div>
-    <script src="{{ mix('js/swiper.js') }}"></script>
+      <script src="{{ mix('js/swiper.js') }}"></script>
 </x-app-layout>
