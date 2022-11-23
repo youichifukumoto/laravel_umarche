@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
@@ -58,6 +59,14 @@ class ItemController extends Controller
     public function show($id)
     {
        $product = Product::findOrFail($id);
-       return view('user.show', compact('product'));
+        $quantity = Stock::where('product_id', $product->id)             //指定した商品の在庫の在庫を指定して在庫数を$quantityに代入
+        ->sum('quantity');
+
+        if ($quantity > 20) {                                        //数量のセレクトボックスの上限をここで指定できる
+            $quantity = 20;
+        }
+
+
+       return view('user.show', compact('product', 'quantity'));
     }
 }
