@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Brand;
 use App\Models\SecondaryCategory;
-use App\Models\image;
-use App\Models\stock;
+use App\Models\Image;
+use App\Models\Stock;
+use App\Models\User;
 
 class product extends Model
 {
@@ -88,5 +89,11 @@ class product extends Model
     public function stock()
     {
         return $this->hasMany(stock::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'carts')
+            ->withPivot(['id', 'quantity']);
     }
 }

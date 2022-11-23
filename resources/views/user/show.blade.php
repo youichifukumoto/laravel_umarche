@@ -80,6 +80,14 @@
                             <p class="mb-10 leading-relaxed">{{ $product->information }}</p>
                             <div class="flex justify-around items-center">
                                 <div class="flex items-center">
+                                    <div>在庫</div>
+                                    @if ($quantity>10)
+                                        <div>◎</div>
+                                    @elseif ($quantity>5)
+                                        <div>○</div>
+                                    @elseif ($quantity>1)
+                                        <div>△</div>
+                                    @endif
                                     <span class="mr-3">数量</span>
                                     <div class="relative">
                                         <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
