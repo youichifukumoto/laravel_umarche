@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="md:w-1/2 ml-12 mr-12">
-                            <h2 class="mt-4 mb-2 text-sm title-font text-gray-500 tracking-widest">{{ $product->brand->brand_name }}</h2>
+                            <h2 class=" mb-4 text-sm title-font text-gray-500 tracking-widest">{{ $product->brand->brand_name }}</h2>
                             <div class="flex justify-between">
                                 <h1 class="mb-4 text-gray-900 text-3xl title-font font-medium ">品番 {{ $product->number }}</h1>
                                 <div>
@@ -96,9 +96,43 @@
                             </div>
                         </div>
                   </div>
+                  <div class="border-t border-gray-400 my-8"></div>
+                  {{-- <div class="mb-4 text-center">この商品のブランド情報</div> --}}
+                  <div class="mb-4 text-center">{{ $product->brand->brand_name }}</div>
+                  <div class="mb-4 text-center">
+                      @if($product->brand->filename !== null)
+                        <img class="mx-auto w-40 h-40 object=cover rounded-full" src="{{ asset('storage/brands/' . $product->brand->filename )}}">
+                      @else
+                        <img src="">
+                      @endif</div>
+                  <div class="mb-4 text-center">
+                       <button data-micromodal-trigger="modal-1" href='javascript:;' type="button" class="text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 rounded">ブランドの詳細・展示会情報を見る</button>
+                  </div>
                 </div>
             </div>
        </div>
+    </div>
+
+      <div class="modal micromodal-slide z-100"  id="modal-1" aria-hidden="true">
+        <div class="modal__overlay z-100" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            <header class="modal__header">
+            <h2 class="text-x1 text-gray-700 modal__title" id="modal-1-title">
+                {{ $product->brand->brand_name }}
+            </h2>
+            <button type="button" class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            <main class="modal__content" id="modal-1-content">
+            <p>
+              {{ $product->brand->information }}
+            </p>
+            </main>
+            <footer class="modal__footer flex justify-around">
+            <button class="modal__btn modal__btn-primary">展示会カタログ</button>
+            <button type="button" class="text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-gray-500 rounded" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
+            </footer>
+        </div>
+        </div>
     </div>
     <script src="{{ mix('js/swiper.js') }}"></script>
 </x-app-layout>

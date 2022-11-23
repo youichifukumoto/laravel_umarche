@@ -875,6 +875,11 @@ select {
   margin-right: auto;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -957,6 +962,10 @@ select {
   margin-right: 3rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -975,10 +984,6 @@ select {
 
 .mt-10 {
   margin-top: 2.5rem;
-}
-
-.mb-10 {
-  margin-bottom: 2.5rem;
 }
 
 .mb-7 {
@@ -1041,6 +1046,10 @@ select {
   height: 2rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .h-1 {
   height: 0.25rem;
 }
@@ -1095,6 +1104,10 @@ select {
 
 .w-8 {
   width: 2rem;
+}
+
+.w-40 {
+  width: 10rem;
 }
 
 .w-1\/2 {
@@ -1245,6 +1258,10 @@ select {
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .rounded-l-md {
@@ -1888,6 +1905,11 @@ select {
 .hover\:bg-indigo-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-500:hover {

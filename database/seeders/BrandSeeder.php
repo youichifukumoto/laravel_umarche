@@ -19,15 +19,15 @@ class BrandSeeder extends Seeder
             [
                 'owner_id' => 1,
                 'brand_name' => 'ichi',
-                'information' => 'ブランド情報を記入',
-                'filename' => '',
+                'information' => 'ブランド情報を記入。ブランド情報を記入。ブランド情報を記入。',
+                'filename' => 'sample1.jpg',
                 'is_selling' => true,
             ],
             [
                 'owner_id' => 2,
                 'brand_name' => 'cube sugar',
-                'information' => 'ブランド情報を記入',
-                'filename' => '',
+                'information' => 'ブランド情報を記入。ブランド情報を記入。ブランド情報を記入。',
+                'filename' => 'sample2.jpg',
                 'is_selling' => true,
             ],
            ]);
