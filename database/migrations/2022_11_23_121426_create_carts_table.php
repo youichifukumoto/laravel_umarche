@@ -19,6 +19,7 @@ class CreateCartsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->integer('betting_rate');
             $table->foreignId('product_id')
             ->constrained()
             ->onUpdate('cascade')
