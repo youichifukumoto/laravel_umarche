@@ -161,7 +161,7 @@ class ProductController extends Controller
             ]);;
 
         }else{
-            try {                                                          //トランザクション処理…商品を登録したらstock（在庫）も生成する。
+            try {                                           //トランザクション処理…商品を登録したらstock（在庫）も生成する。
                 DB::transaction(function () use ($request, $product) {
                         $product->number = $request->number;
                         $product->name = $request->name;
@@ -222,8 +222,7 @@ class ProductController extends Controller
         return redirect()
             ->route('owner.products.index')
             ->with([
-                'message' => '商品
-                を削除しました。',
+                'message' => '商品を削除しました。',
                 'status' => 'alert'
             ]);
     }
