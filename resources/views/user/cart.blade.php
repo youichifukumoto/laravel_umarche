@@ -50,6 +50,9 @@
                         </div>
                       </div>
                       @endforeach
+                      <div>
+                         <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.cart.checkout')}}'" >購入する</button>
+                      </div>
                     @else
                        <div class="flex justify-center">
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
