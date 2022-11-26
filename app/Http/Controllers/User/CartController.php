@@ -77,7 +77,11 @@ class CartController extends Controller
 
 
         if ($product->pivot->quantity > $quantity) {
-            return redirect()->route('user.cart.index');
+            return redirect()->route('user.cart.index')
+                ->with([
+                    'message' => 'このコミットの途中に在庫数に変更がありました。再度確認をしてください。',
+                    'status' => 'alert'
+                ]);
         } else {
                 // $lineItem = [
                 //     'name' => $product->name,
@@ -104,8 +108,8 @@ class CartController extends Controller
         //   'payment_method_types' => ['card'],
         //   'line_items' => [$lineItems],
         //   'mode' => 'payment',
-        //   'success_url' => route('user.items.index'),
-        //   'cancel_url' => route('user.cart.index'),
+        //   'success_url' => route('user.items.success'),
+        //   'cancel_url' => route('user.cart.cancel'),
         //   ]);
 
         // $publicKey = env('STRIPE_PUBLIC_KEY');
@@ -118,6 +122,28 @@ class CartController extends Controller
     {
         Cart::where('user_id', Auth::id())->delete();
 
-        return redirect()->route('user.items.index');
+        return redirect()->route('user.items.index')
+        ->with([
+            'message' => '商品の追加オーダーが確定しました。',
+            'status' => 'info'
+        ]);
+    }
+
+
+    public function cancel()
+    {
+        $user = User::findOrFail(Auth::id());
+        $products = $user->products;
+
+        foreach ($user->$products as $product) {
+            Stock::create([
+                'product_id' => $product->id,
+                'type' =>  \Constant::PRODUCT_LIST['add'],
+                'quantity' => $product->pivot->quantity
+            ]);
+        }
+
+        return redirect()->route('user.cart.success');
+
     }
 }

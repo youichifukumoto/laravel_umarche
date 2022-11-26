@@ -158,7 +158,7 @@ class ProductController extends Controller
             ->with([
                 'message' => 'このコミットの途中に在庫数に変更がありました。再度確認をしてください。',
                 'status' => 'alert'
-            ]);;
+            ]);
 
         }else{
             try {                                           //トランザクション処理…商品を登録したらstock（在庫）も生成する。
