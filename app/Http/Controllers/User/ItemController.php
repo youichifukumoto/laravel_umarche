@@ -7,50 +7,29 @@ use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
+use Stripe\Product as StripeProduct;
 
 class ItemController extends Controller
 {
       public function __construct()
     {
         $this->middleware('auth:users');
+
+        $this->middleware(function ($request, $next) {
+            $id = $request->route()->parameter('item'); //imageのid取得
+            if (!is_null($id)) { // null判定
+                $itemId = Product::availableItems()->where('products.id', $id)->exists();
+                if (!$itemId) { // 同じでなかったら
+                    abort(404); // 404画面表示 }
+                }
+            }
+            return $next($request);
+        });
     }
 
     public function index()
     {
-        $stocks = DB::table('t_stocks')
-        ->select('product_id', DB::raw('sum(quantity) as quantity'))
-        ->groupBy('product_id')
-        ->having('quantity', '>', 1);
-
-        $products = DB::table('products')
-        ->joinSub($stocks, 'stock', function ($join) {
-            $join->on('products.id', '=', 'stock.product_id');
-        })
-        ->join('brands', 'products.brand_id', '=', 'brands.id')
-        ->join('secondary_categories', 'products.secondary_category_id', '=', 'secondary_categories.id')
-        ->join('images as image1', 'products.image1', '=', 'image1.id')
-        ->join('images as image2', 'products.image2', '=', 'image2.id')
-        ->join('images as image3', 'products.image3', '=', 'image3.id')
-        ->join('images as image4', 'products.image4', '=', 'image4.id')
-        ->join('images as image5', 'products.image5', '=', 'image5.id')
-        ->join('images as image6', 'products.image6', '=', 'image6.id')
-        ->join('images as image7', 'products.image7', '=', 'image7.id')
-        ->join('images as image8', 'products.image8', '=', 'image8.id')
-        ->join('images as image9', 'products.image9', '=', 'image9.id')
-        ->join('images as image10', 'products.image10', '=', 'image10.id')
-        ->where('brands.is_selling', true)
-        ->where('products.is_selling', true)
-        ->select(
-            'products.id as id',
-            'products.name as name',
-            'products.price',
-            'products.sort_order as sort_order',
-            'products.information',
-            'secondary_categories.name as category',
-            'image1.filename as filename'
-        )
-        ->get();
-
+        $products = Product::availableItems()->get();
 
         // $products = Product::all();
         return view('user.index', compact('products'));

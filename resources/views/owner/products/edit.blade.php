@@ -67,14 +67,14 @@
                                  <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
                                         <label for="current_quantity" class="leading-7 text-sm text-gray-600">現在の在庫数</label>
-                                        <input type="hidden" id="current_quantity" name="current_quantity" value="{{ $quantity }}" repuired >
+                                        <input type="hidden" id="current_quantity" name="current_quantity" value="{{ $quantity }}">
                                         <div class="w-full bg-gray-100 bg-opacity-50 rounded text-base outline-none text-gray-700 py-1 px-3 leading-8">{{ $quantity }}</div>
                                     </div>
                                 </div>
 
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="quantity" class="leading-7 text-sm text-gray-600">下記数量を入力後、次項目でその数量分を（増やすor減らす）選択して完了です。</label>
+                                        <label for="quantity" class="leading-7 text-sm text-gray-600">下記数量を入力後、次項目でその数量分を（追加or削減）選択して完了です。</label>
                                         <input type="number" id="quantity" name="quantity" value="0" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <span class="text-sm">0〜999の範囲で入力してください</span>
                                     </div>
@@ -82,12 +82,12 @@
 
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative flex justify-around">
-                                        <label for="is_selling">
-                                            <input class="mr-2" id="is_selling" type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['add'] }}"
-                                            checked>増やす</label>
-                                        <label for="close">
-                                            <input class="mr-2" id="close" type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['reduce'] }}">
-                                            減らす</label>
+                                        <label for="add">
+                                            <input class="mr-2" id="add" type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['add'] }}"
+                                            checked>追加</label>
+                                        <label for="reduce">
+                                            <input class="mr-2" id="reduce" type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['reduce'] }}">
+                                            削減</label>
                                     </div>
                                  </div>
 
@@ -126,11 +126,11 @@
                                         <label for="is_selling">
                                             <input class="mr-2" id="is_selling" type="radio" name="is_selling" value="1"
                                             @if ($product->is_selling === 1) checked @endif
-                                            >在庫あり</label>
+                                            >販売可能</label>
                                         <label for="close">
                                             <input class="mr-2" id="close" type="radio" name="is_selling" value="0"
                                             @if ($product->is_selling === 0) checked @endif
-                                            >完売</label>
+                                            >販売停止</label>
                                     </div>
                                  </div>
 
@@ -143,7 +143,7 @@
                           <form id="delete_{{$product->id}}" method="POST" action="{{ route('owner.products.destroy',      ['product'=>$product->id])}}">
                             @csrf
                             @method('delete')
-                            <div class="p-2 w-full flex justify-around mt-4">
+                            <div class="p-2 w-full flex justify-around mt-20">
                                 <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 w-2/3 focus:outline-none hover:bg-red-400 rounded text-lg text-center">削  除</a>
                             </div>
                         </form>

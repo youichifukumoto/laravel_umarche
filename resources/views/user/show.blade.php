@@ -16,45 +16,84 @@
                             <!-- Additional required wrapper -->
                             <div class="swiper-wrapper">
                                 <!-- Slides -->
-                                <div class="swiper-slide"> @if($product->imageFirst->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageFirst->filename )}}"> @else
-                                <img src=""> @endif
+                                <div class="swiper-slide">
+                                @if (isset($product->imageFirst->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageFirst->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageSecond->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageSecond->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageSecond->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageSecond->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageThird->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageThird->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageThird->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageThird->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageFourth->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageFourth->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageFourth->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageFourth->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageFifth->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageFifth->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageFifth->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageFifth->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageSixth->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageSixth->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageSixth->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageSixth->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageSeventh->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageSeventh->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageSeventh->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageSeventh->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageEighth->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageEighth->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageEighth->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageEighth->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageNinth->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageNinth->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageNinth->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageNinth->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
-                                <div class="swiper-slide"> @if($product->imageTenth->filename !== null)
-                                <img src="{{ asset('storage/products/' . $product->imageTenth->filename )}}"> @else
-                                <img src=""> @endif
+
+                                <div class="swiper-slide">
+                                @if (isset($product->imageTenth->filename))
+                                <img src="{{ asset('storage/products/' . $product->imageTenth->filename )}}">
+                                @else
+                                <img src="">
+                                @endif
                                 </div>
                             </div>
                             <!-- If we need pagination -->
