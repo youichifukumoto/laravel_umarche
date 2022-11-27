@@ -1123,6 +1123,10 @@ select {
   width: 10rem;
 }
 
+.w-1\/5 {
+  width: 20%;
+}
+
 .w-1\/2 {
   width: 50%;
 }
