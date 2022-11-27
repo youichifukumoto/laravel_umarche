@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\Stock;
+use App\Models\PrimaryCategory;
 use Illuminate\Support\Facades\DB;
 use Stripe\Product as StripeProduct;
 
@@ -29,12 +30,18 @@ class ItemController extends Controller
 
     public function index(Request $request)
     {
+        // dd($request);
+        $categories = PrimaryCategory::with('secondary')->get();
+
         $products = Product::availableItems()
+        ->selectCategory($request->category ?? '0')
         ->sortOrder($request->sort)
         ->paginate($request->pagination ?? "20");
 
         // $products = Product::all();
-        return view('user.index', compact('products'));
+        $categories = PrimaryCategory::with(
+        'secondary')->get();
+        return view('user.index', compact('products', 'categories'));
     }
 
     public function show($id)
