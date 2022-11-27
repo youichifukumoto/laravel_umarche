@@ -8,7 +8,10 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Stripe\LineItem;
+use App\Mail\TestMail;
+
 
 class CartController extends Controller
 {
@@ -121,6 +124,9 @@ class CartController extends Controller
     public function success()
     {
         Cart::where('user_id', Auth::id())->delete();
+
+        mail::to('test@example.com')
+        ->send(new TestMail());
 
         return redirect()->route('user.items.index')
         ->with([
