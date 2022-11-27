@@ -45,10 +45,6 @@ class ProductController extends Controller
     }
 
 
-
-
-
-
     public function create()
     {
         $brands = Brand::where('owner_id', Auth::id())                               //ブランドの外部キー取得
