@@ -128,15 +128,17 @@ class CartController extends Controller
     {
         $items = Cart::where('user_id', Auth::id())->get();
         $products = CartService::getItemsInCart($items);
+        $user = User::findOrFail(Auth::id());
+
+
+        //非同期で送信
+        SendThanksMail::dispatch($products, $user);
+        // dd('メール送信');
 
         Cart::where('user_id', Auth::id())->delete();
         //同期的に送信
         // mail::to('test@example.com')
         // ->send(new TestMail());
-
-        //非同期で送信
-        SendThanksMail::dispatch();
-
         return redirect()->route('user.items.index')
         ->with([
             'message' => '商品の追加オーダーが確定しました。',
