@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Stripe\LineItem;
 use App\Mail\TestMail;
 use App\Jobs\SendThanksMail;
+use App\Services\CartService;
 
 
 
@@ -125,6 +126,9 @@ class CartController extends Controller
 
     public function success()
     {
+        $items = Cart::where('user_id', Auth::id())->get();
+        $products = CartService::getItemsInCart($items);
+
         Cart::where('user_id', Auth::id())->delete();
         //同期的に送信
         // mail::to('test@example.com')
