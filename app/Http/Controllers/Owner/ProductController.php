@@ -148,7 +148,9 @@ class ProductController extends Controller
         $quantity = Stock::where('product_id', $product->id)             //指定した商品の在庫の在庫を指定して在庫数を$quantityに代入
         ->sum("quantity");
 
-        // dd($request->current_quantity , $quantity);
+        if($quantity === 0){
+            $quantity = '0';
+        }
 
         if($request->current_quantity !== $quantity){
             $id = $request->route()->parameter('product'); //imageのid取得

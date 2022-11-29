@@ -13,6 +13,7 @@ use Stripe\LineItem;
 use App\Mail\TestMail;
 use App\Jobs\SendThanksMail;
 use App\Services\CartService;
+use App\Jobs\SendOrderedMail;
 
 
 
@@ -130,10 +131,14 @@ class CartController extends Controller
         $products = CartService::getItemsInCart($items);
         $user = User::findOrFail(Auth::id());
 
-
         //非同期で送信
         SendThanksMail::dispatch($products, $user);
-        // dd('メール送信');
+
+        foreach($products as $product)
+        {
+            SendOrderedMail::dispatch($product, $user);
+        }
+       
 
         Cart::where('user_id', Auth::id())->delete();
         //同期的に送信
