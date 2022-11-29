@@ -8,7 +8,14 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Stripe\LineItem;
+use App\Mail\TestMail;
+use App\Jobs\SendThanksMail;
+use App\Services\CartService;
+use App\Jobs\SendOrderedMail;
+
+
 
 class CartController extends Controller
 {
@@ -120,8 +127,23 @@ class CartController extends Controller
 
     public function success()
     {
-        Cart::where('user_id', Auth::id())->delete();
+        $items = Cart::where('user_id', Auth::id())->get();
+        $products = CartService::getItemsInCart($items);
+        $user = User::findOrFail(Auth::id());
 
+        //非同期で送信
+        SendThanksMail::dispatch($products, $user);
+
+        foreach($products as $product)
+        {
+            SendOrderedMail::dispatch($product, $user);
+        }
+       
+
+        Cart::where('user_id', Auth::id())->delete();
+        //同期的に送信
+        // mail::to('test@example.com')
+        // ->send(new TestMail());
         return redirect()->route('user.items.index')
         ->with([
             'message' => '商品の追加オーダーが確定しました。',

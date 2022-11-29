@@ -45,10 +45,6 @@ class ProductController extends Controller
     }
 
 
-
-
-
-
     public function create()
     {
         $brands = Brand::where('owner_id', Auth::id())                               //ブランドの外部キー取得
@@ -150,7 +146,11 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $quantity = Stock::where('product_id', $product->id)             //指定した商品の在庫の在庫を指定して在庫数を$quantityに代入
-        ->sum('quantity');
+        ->sum("quantity");
+
+        if($quantity === 0){
+            $quantity = '0';
+        }
 
         if($request->current_quantity !== $quantity){
             $id = $request->route()->parameter('product'); //imageのid取得

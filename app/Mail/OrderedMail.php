@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class OrderedMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $product;
+    public $user;
+
+    public function __construct($product, $user)
+    {
+        $this->product = $product;
+        $this->user = $user;
+        dd($product, $user);
+    }
+
+
+    public function build()
+    {
+        return $this->view('emails.Ordered')
+        ->subject('商品が注文されました。');
+    }
+}
