@@ -18,7 +18,7 @@ class OrderedMail extends Mailable
     {
         $this->product = $product;
         $this->user = $user;
-        dd($product, $user);
+
     }
 
 

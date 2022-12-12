@@ -35,7 +35,7 @@ class ImageController extends Controller
 
     public function index()
     {
-        $images = Image::where('owner_id', Auth::id())->orderBy('updated_at','desc')->paginate(20);
+        $images = Image::where('owner_id', Auth::id())->orderBy('title','desc')->paginate(20);
 
         return view('owner.images.index', compact('images'));
     }
@@ -170,7 +170,7 @@ class ImageController extends Controller
             Storage::delete($filePath);
         }
 
-        Image::findOrFail($id)->delete(); //ソフトデリート
+        Image::findOrFail($id)->delete(); 
 
         return redirect()
             ->route('owner.images.index')

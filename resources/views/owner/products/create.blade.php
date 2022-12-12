@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
                     <form method="POST" action="{{ route('owner.products.store') }}">
                           @csrf
                             <div class="-m-2">
@@ -30,11 +30,21 @@
                                         <label for="number" class="leading-7 text-sm text-gray-600">品番 ※必須</label>
                                         <input type="text" id="number" name="number" autofocus value="{{ old('number') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
+                                    <div class="text-sm text-red-600">
+                                        @if ($errors->has('number'))
+                                        <li>{{$errors -> first('number')}}</li>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
                                         <label for="name"  class="leading-7 text-sm text-gray-600">商品名 ※必須</label>
                                         <input type="text" id="name" name="name" value="{{ old('name') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    </div>
+                                    <div class="text-sm text-red-600">
+                                        @if ($errors->has('name'))
+                                        <li>{{$errors -> first('name')}}</li>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
@@ -48,6 +58,11 @@
                                         <label for="price" class="leading-7 text-sm text-gray-600">価格 ※必須</label>
                                         <input type="number" id="price" name="price" value="{{ old('price') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
+                                    <div class="text-sm text-red-600">
+                                        @if ($errors->has('price'))
+                                        <li>{{$errors -> first('price')}}</li>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
@@ -55,11 +70,21 @@
                                         <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <span class="text-sm">0〜999の範囲で入力してください</span>
                                     </div>
+                                    <div class="text-sm text-red-600">
+                                        @if ($errors->has('quantity'))
+                                        <li>{{$errors -> first('quantity')}}</li>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
                                         <label for="sort_order" class="leading-7 text-sm text-gray-600">表示順</label>
                                         <input type="number" id="sort_order" name="sort_order" value="{{ old('sort_order') }}"  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                    </div>
+                                     <div class="text-sm text-red-600">
+                                        @if ($errors->has('sort_order'))
+                                        <li>{{$errors -> first('sort_order')}}</li>
+                                        @endif
                                     </div>
                                 </div>
                                  <div class="p-2 w-2/3 mx-auto">

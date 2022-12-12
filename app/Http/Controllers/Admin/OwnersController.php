@@ -68,7 +68,7 @@ class OwnersController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 'min:8',  Rules\Password::defaults()],
         ]);
 
         try{
@@ -81,7 +81,7 @@ class OwnersController extends Controller
 
                 Brand::create([
                     'owner_id'=>$owner->id,
-                    'brand_name'=>'ブランド名を入力',
+                    'brand_name'=>'ブランド名を入力して下さい。',
                     'information'=>'',
                     'filename'=>'',
                     'is_selling'=>true,
@@ -93,8 +93,6 @@ class OwnersController extends Controller
            throw $e;
         }
 
-
-
         return redirect()
         ->route('admin.owners.index')
         ->with([
@@ -104,12 +102,9 @@ class OwnersController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function show($id)
     {
         //

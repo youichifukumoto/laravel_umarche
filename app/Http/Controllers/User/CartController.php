@@ -138,7 +138,7 @@ class CartController extends Controller
         {
             SendOrderedMail::dispatch($product, $user);
         }
-       
+
 
         Cart::where('user_id', Auth::id())->delete();
         //同期的に送信

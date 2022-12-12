@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            メーカー一覧
+            顧客一覧
         </h2>
     </x-slot>
 
@@ -16,48 +16,45 @@
 
                         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
                              <div class="flex justify-end mb-4 mt-6">
-                                <button onclick="location.href='{{ route('admin.owners.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">新規登録</button>
+                                <button onclick="location.href='{{ route('owner.users.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">顧客新規登録</button>
                              </div>
                            <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">メーカー名</th>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">店舗名</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">掛け率</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">登録日</th>
                                 <th class="md:px-4 py-3  title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 <th class="md:px-4 py-3  title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($owners as $owner)
+                            @foreach ($users as $user)
                             <tr>
-                                <td class="md:px-4 py-3">{{ $owner->name }}</td>
-                                <td class="md:px-4 py-3">{{ $owner->email }}</td>
-                                {{-- <td class="px-4 py-3">{{ $owner->created_at->diffForHumans()}}</td> --}}
-                                <td class="md:px-4 py-3">{{ $owner->created_at}}</td>
+                                <td class="md:px-4 py-3">{{ $user->name }}</td>
+                                <td class="md:px-4 py-3">{{ $user->email }}</td>
+                                <td class="md:px-4 py-3">{{ $user->betting_rate }}％</td>
+                                <td class="md:px-4 py-3">{{ $user->created_at}}</td>
                                 <td class="md:px-4 py-3">
-                                <button onclick="location.href='{{ route('admin.owners.edit', ['owner'=> $owner->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded ">編集</button>
+                               <button onclick="location.href='{{ route('owner.users.edit', ['user'=> $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded ">編集</button>
                                 </td>
-                                <form id="delete_{{$owner->id}}" method="POST" action="{{ route('admin.owners.destroy',  ['owner'=>$owner->id])}}">
+                                <form id="delete_{{ $user->id }}" method="POST" action="{{ route('owner.users.destroy', ['user'=> $user->id]) }}">
                                     @csrf
                                     @method('delete')
                                    <td class="md:px-4 py-3">
-                                <a href="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-400 rounded ">削除</a>
-                                   </td>
+                                <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-400 rounded ">削除
+                                </a>
+                                </td>
                                 </form>
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        {{ $owners->links() }}
+                        {{ $users->links() }}
                         </div>
                     </div>
                     </section>
-                    {{--クエリービルダー
-                     @foreach ($q_get as $q_owner)
-                    {{ $q_owner->name }}
-                    {{ Carbon\Carbon::parse($q_owner->created_at)->diffForHumans() }}
-                    @endforeach--}}
                 </div>
             </div>
         </div>

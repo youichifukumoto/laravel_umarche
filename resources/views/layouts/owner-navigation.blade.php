@@ -26,10 +26,17 @@
                     <x-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
                         商品管理
                     </x-nav-link>
+                    <x-nav-link :href="route('owner.users.index')" :active="request()->routeIs('owner.users.index')">
+                        顧客管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('owner.expired-users.index')" :active="request()->routeIs('owner.expired-users.index')">
+                        削除顧客
+                    </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
+
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -52,7 +59,7 @@
                             <x-dropdown-link :href="route('owner.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                ログアウト
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -85,6 +92,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('owner.products.index')" :active="request()->routeIs('owner.products.index')">
                 商品管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('owner.users.index')" :active="request()->routeIs('owner.users.index')">
+                顧客管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('owner.expired-users.index')" :active="request()->routeIs('owner.expired-users.index')">
+                削除顧客一覧
             </x-responsive-nav-link>
 
         </div>

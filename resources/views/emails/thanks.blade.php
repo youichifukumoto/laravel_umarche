@@ -6,7 +6,7 @@
 注文内容
 @foreach ($products as $product)
 <ul class="mb-4">
-    {{-- <li>ブランド名: {{ $brand['brand_name'] }}</li> --}}
+    <li>ブランド名: {{ $product['brand_name'] }}</li>
     <li>品番: {{ $product['number'] }}</li>
     <li>商品: {{ $product['name'] }}</li>
     <li>上代: {{ number_format($product['price']) }}円</li>

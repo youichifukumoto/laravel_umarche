@@ -9,6 +9,7 @@ use App\Http\Controllers\Owner\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use App\Http\Controllers\Owner\BrandController;
+use App\Http\Controllers\Owner\UsersController;
 use App\Http\Controllers\Owner\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Owner\ProductController;
@@ -32,6 +33,14 @@ Route::prefix('brands')->middleware('auth:owners')->group(function () {
     Route::get('edit/{brand}', [brandController::class, 'edit'])->name('brands.edit');
     Route::post('update/{brand}', [brandController::class, 'update'])->name('brands.update');
 });
+
+Route::prefix('expired-users')->middleware('auth:owners')->group(function () {
+    Route::get('index', [UsersController::class, 'expiredUserIndex'])->name('expired-users.index');
+    Route::post('destroy/{user}', [UsersController::class, 'expiredUserDestroy'])->name('expired-users.destroy');
+});
+
+Route::resource('users', UsersController::class)
+->middleware('auth:owners');
 
 Route::resource('images', ImageController::class)
 ->middleware('auth:owners')->except(['show']);

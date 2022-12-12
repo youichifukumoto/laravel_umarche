@@ -21,9 +21,8 @@
                         メーカー管理
                     </x-nav-link>
                     <x-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
-                        期限切れメーカー一覧
+                        削除メーカー一覧
                     </x-nav-link>
-
                 </div>
             </div>
 
@@ -50,7 +49,7 @@
                             <x-dropdown-link :href="route('admin.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                ログアウト
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -79,7 +78,7 @@
                 メーカー管理
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
-                期限切れメーカー一覧
+                削除メーカー一覧
             </x-responsive-nav-link>
         </div>
 
