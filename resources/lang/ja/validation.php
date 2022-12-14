@@ -164,6 +164,8 @@ return [
         'brand_name' => 'ブランド名',
         'information' => '内容、情報',
         'price' => '価格',
+        'image' => '画像',
+        'title' => '品番',
     ],
 
 ];

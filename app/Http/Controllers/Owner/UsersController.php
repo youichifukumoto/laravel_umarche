@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User; //エロくアント
 use Illuminate\Support\Facades\DB; //クエリビルダー
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 

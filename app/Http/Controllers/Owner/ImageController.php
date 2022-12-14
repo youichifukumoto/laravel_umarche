@@ -88,7 +88,7 @@ class ImageController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-        'title' => ['required', 'string', 'max:50'],
+        'title' => ['nullable', 'string', 'max:50'],
         ]);
 
         $image = Image::findOrFail($id);
@@ -170,7 +170,7 @@ class ImageController extends Controller
             Storage::delete($filePath);
         }
 
-        Image::findOrFail($id)->delete(); 
+        Image::findOrFail($id)->delete();
 
         return redirect()
             ->route('owner.images.index')

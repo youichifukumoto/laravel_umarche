@@ -14,7 +14,7 @@
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
         <form method="POST" action="{{ route('admin.login') }}">
             @csrf
@@ -25,6 +25,11 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
+            <div class="text-sm text-red-600">
+                @if ($errors->has('email'))
+                <li>{{$errors -> first('email')}}</li>
+                @endif
+            </div>
 
             <!-- Password -->
             <div class="mt-4">
@@ -34,6 +39,11 @@
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
+            </div>
+            <div class="text-sm text-red-600">
+                @if ($errors->has('password'))
+                <li>{{$errors -> first('password')}}</li>
+                @endif
             </div>
 
             <!-- Remember Me -->

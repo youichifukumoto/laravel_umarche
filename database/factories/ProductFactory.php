@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'information' => $this->faker->realText,
             'price' => $this->faker->numberBetween(7000, 20000),
             'is_selling' => $this->faker->numberBetween(0, 1),
-            'sort_order' => $this->faker->randomNumber,
+            'sort_order' => $this->faker->numberBetween(1, 4),
             'brand_id' => $this->faker->numberBetween(1, 2),
             'secondary_category_id' => $this->faker->numberBetween(1, 15),
             'image1' => $this->faker->numberBetween(1, 6),
