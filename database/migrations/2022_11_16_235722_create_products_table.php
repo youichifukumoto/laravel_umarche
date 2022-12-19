@@ -19,10 +19,48 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('information')->nullable();
             $table->unsignedInteger('price');
+            // $table->foreignId('color_A')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_B')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_C')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_D')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_E')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_F')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_G')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_H')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_I')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_J')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_K')
+            // ->nullable()
+            // ->constrained('product_colors');
+            // $table->foreignId('color_L')
+            // ->nullable()
+            // ->constrained('product_colors');
+
             $table->boolean('is_selling');
             $table->integer('sort_order')->nullable();
             $table->foreignId('secondary_category_id')
             ->constrained();
+
             $table->foreignId('image1')
             ->nullable()
             ->constrained('images');

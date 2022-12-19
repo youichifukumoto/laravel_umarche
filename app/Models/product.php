@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\SecondaryCategory;
 use App\Models\Image;
 use App\Models\Stock;
+use App\Models\ProductColor;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -87,10 +88,16 @@ class product extends Model
         return $this->belongsTo(Image::class, 'image10', 'id');
     }
 
+    public function productColor()
+    {
+        return $this->hasMany(ProductColor::class);
+    }
+
     public function stock()
     {
         return $this->hasMany(stock::class);
     }
+
 
     public function users()
     {

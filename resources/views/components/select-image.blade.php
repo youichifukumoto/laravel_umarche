@@ -37,7 +37,7 @@ $cId = $currentId ?? '' ;
             @endforeach
             </div>
         </main>
-        <footer class="modal__footer">
+        <footer class="modal__footer flex justify-end">
             <button type="button" class="text-white bg-gray-400 border-0 py-2 px-5
             6 focus:outline-none hover:bg-gray-300 rounded" data-micromodal-close aria-label="閉じる">閉じる</button>
         </footer>

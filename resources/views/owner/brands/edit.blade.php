@@ -15,7 +15,10 @@
                             <div class="-m-2">
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="brand_name" class="leading-7 text-sm text-gray-600">ブランド名 ※必須</label>
+                                        <label for="brand_name" class="flex leading-7 text-sm text-gray-600">
+                                            <div>ブランド名</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="text" id="brand_name" name="brand_name" autofocus value="{{ $brand->brand_name }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">

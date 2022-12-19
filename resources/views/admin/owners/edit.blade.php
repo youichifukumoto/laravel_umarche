@@ -23,7 +23,10 @@
                             <div class="-m-2">
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="name" class="leading-7 text-sm text-gray-600">メーカー名</label>
+                                        <label for="name" class="flex leading-7 text-sm text-gray-600">
+                                            <div>メーカー名</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="text" id="name" name="name" value="{{ $owner->name }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -34,7 +37,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
+                                        <label for="email" class="flex leading-7 text-sm text-gray-600">
+                                            <div>メールアドレス</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="email" id="email" name="email" value="{{ $owner->email }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -51,7 +57,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
+                                         <label for="password" class="flex leading-7 text-sm text-gray-600">
+                                            <div>パスワード</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="password" id="password" name="password" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -62,7 +71,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="password_confirmation" class="leading-7 text-sm text-gray-600">パスワード確認</label>
+                                        <label for="password_confirmation" class="flex leading-7 text-sm text-gray-600">
+                                            <div>パスワード確認</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                 </div>

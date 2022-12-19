@@ -14,10 +14,10 @@
                     <div class="container px-5 mx-auto">
 
                        <x-flash-message status="session('status')"/>
-
+                        @if (count($expiredOwners) > 0)
                         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
                         <table class="table-auto w-full text-left whitespace-no-wrap">
-                            <thead>
+                             <thead>
                             <tr>
                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">メーカー名</th>
                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
@@ -34,7 +34,7 @@
                                 {{-- <td class="px-4 py-3">{{ $owner->created_at}}</td> --}}
                                 <td class="px-4 py-3">{{ $owner->deleted_at}}</td>
                                 <td class="px-4 py-3">
-                                <a href="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded">復元</a>
+                                <a href="#" data-id="{{ $owner->id }}" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded">復元</a>
                                    </td>
                                 <form id="delete_{{$owner->id}}" method="POST" action="{{ route('admin.expired-owners.destroy',  ['owner'=>$owner->id])}}">
                                     @csrf
@@ -46,6 +46,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                            @else
+                             <div class='flex justify-center'>削除中のメーカー情報はありません。</div>
+                            @endif
                         </div>
                     </div>
                     </section>

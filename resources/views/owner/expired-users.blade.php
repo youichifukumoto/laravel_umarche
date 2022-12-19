@@ -14,7 +14,7 @@
                     <div class="container px-5 mx-auto">
 
                        <x-flash-message status="session('status')"/>
-
+                       @if (count($expiredUsers) > 0)
                         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
                         <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
@@ -47,6 +47,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        @else
+                          <div class='flex justify-center'>削除中の顧客情報はありません。</div>
+                        @endif
                         </div>
                     </div>
                     </section>

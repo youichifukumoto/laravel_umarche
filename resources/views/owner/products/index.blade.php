@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            商品一覧
+            在庫商品一覧
         </h2>
     </x-slot>
 
@@ -16,14 +16,14 @@
                              <div class="flex flex-wrap">
                            @foreach ($ownerInfo as $owner)
                                @foreach ($owner->brand->product as $product)
-                                <div class="w-1/3 p-1 md:p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
+                                <div class="w-1/4 p-1 md:p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
                                 <a href="{{ route('owner.products.edit', ['product' => $product->id]) }}">
                                 <div class="border rounded-md p-4">
                                 <x-thumbnail  filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
                                 <div class="text-gray-600 text-sm">{{ $product->brand->brand_name }}</div>
                                 <div class="md:flex justify-between">
-                                <div class="text-gray-700 text-sl">No.{{ $product->number }}</div>
-                                <div class="text-gray-700 text-sl">{{ $product->price }}円</div>
+                                <div class="text-gray-700 text-sl">{{ $product->number }}</div>
+                                <div class="text-gray-700 text-sl">{{ number_format($product->price) }}円</div>
                                 </div>
                                 </div>
                                 </a>

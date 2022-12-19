@@ -23,6 +23,13 @@
                     <x-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
                         削除メーカー一覧
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.primaryCategory.index')" :active="request()->routeIs('admin.primaryCategory.index')">
+                        メインカテゴリー管理
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.secondaryCategory.index')" :active="request()->routeIs('admin.secondaryCategory.index')">
+                        セカンドカテゴリー管理
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -79,6 +86,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
                 削除メーカー一覧
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.primaryCategory.index')" :active="request()->routeIs('admin.primaryCategory.index')">
+                メインカテゴリー管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.secondaryCategory.index')" :active="request()->routeIs('admin.secondaryCategory.index')">
+                セカンドカテゴリー管理
             </x-responsive-nav-link>
         </div>
 

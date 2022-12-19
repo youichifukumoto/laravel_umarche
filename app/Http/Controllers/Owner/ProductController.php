@@ -13,8 +13,7 @@ use App\Models\Brand;
 use App\Models\PrimaryCategory;
 use App\Models\Owner;
 use App\Http\Requests\ProductRequest;
-
-
+use App\Models\ProductColor;
 
 class ProductController extends Controller
 {
@@ -71,9 +70,9 @@ class ProductController extends Controller
             'brand_id' => ['required', 'exists:brands,id'],
             'number' => ['required', 'string', 'max:50'],
             'name' => ['required', 'string', 'max:50'],
-            'information' => ['required', 'string', 'max:1000'],
-            'price' => ['required', 'integer'],
+            'information' => ['nullable', 'string', 'max:1000'],
             'sort_order' => ['nullable', 'integer'],
+            'price' => ['required', 'integer'],
             'quantity' => ['required', 'integer'],
             'category' => ['required', 'exists:secondary_categories,id'],
             'image1' => ['nullable', 'exists:images,id'],
@@ -113,23 +112,30 @@ class ProductController extends Controller
                     'is_selling' => $request->is_selling,
                 ]);
 
+                // ProductColor::create([
+                //     'product_id' => $product->id,
+                //     'color' => '',
+                // ]);
+
                 Stock::create([
                     'product_id' => $product->id,
                     'type' => 1,
                     'quantity' => $request->quantity,
                 ]);
             }, 2);
-        } catch (Throwable $e) {
+        }
+        catch (Throwable $e) {
             Log::error($e);
             throw $e;
         }
 
         return redirect()
-            ->route('owner.products.index')
+        ->route('owner.products.index')
             ->with([
                 'message' => '商品登録しました。',
                 'status' => 'info'
-            ]);
+            ]
+        );
     }
 
 

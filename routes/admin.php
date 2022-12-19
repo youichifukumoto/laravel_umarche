@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\OwnersController;
+use App\Http\Controllers\Admin\PrimaryCategoryController;
+use App\Http\Controllers\Admin\SecondaryCategoryController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,15 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('admin.welcome');
 // });
+
+Route::resource('owners', OwnersController::class)
+->middleware('auth:admin')->except(['show']);
+
+Route::resource('primaryCategory', PrimaryCategoryController::class)
+->middleware('auth:admin')->except(['show']);
+
+Route::resource('secondaryCategory', SecondaryCategoryController::class)
+->middleware('auth:admin')->except(['show']);
 
 Route::resource('owners', OwnersController::class)
 ->middleware('auth:admin')->except(['show']);

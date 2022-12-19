@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\SecondaryCategory;
+use App\Models\product;
 
-class PrimaryCategory extends Model
+class ProductColor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'sort_order',
+        'product_id',
+        'color',
     ];
 
-    public function secondary()
+
+    public function product()
     {
-        return $this->hasMany(SecondaryCategory::class);
+        return $this->belongsTo(product::class);
     }
 }
-
-

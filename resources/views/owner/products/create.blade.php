@@ -15,7 +15,12 @@
                             <div class="-m-2">
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class=" relative">
-                                        <div> <label for="brand_id" class="leading-7 text-sm text-gray-600">ブランド名</label></div>
+                                        <div>
+                                            <label for="brand_id" class="flex leading-7 text-sm text-gray-600">
+                                            <div>ブランド名</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
+                                        </div>
                                         <select name="brand_id" id="brand_id">
                                             @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}">
@@ -27,7 +32,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="number" class="leading-7 text-sm text-gray-600">品番 ※必須</label>
+                                        <label for="number" class="flex leading-7 text-sm text-gray-600">
+                                            <div>品番</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="text" id="number" name="number" autofocus value="{{ old('number') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -38,7 +46,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="name"  class="leading-7 text-sm text-gray-600">商品名 ※必須</label>
+                                        <label for="name" class="flex leading-7 text-sm text-gray-600">
+                                            <div>商品名</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="text" id="name" name="name" value="{{ old('name') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -60,7 +71,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="price" class="leading-7 text-sm text-gray-600">価格 ※必須</label>
+                                        <label for="price" class="flex leading-7 text-sm text-gray-600">
+                                            <div>価格</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="number" id="price" name="price" value="{{ old('price') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -71,7 +85,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="quantity" class="leading-7 text-sm text-gray-600">在庫数 ※必須</label>
+                                        <label for="quantity" class="flex leading-7 text-sm text-gray-600">
+                                            <div>在庫数</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <span class="text-sm">0〜999の範囲で入力してください</span>
                                     </div>
@@ -94,7 +111,10 @@
                                 </div>
                                  <div class="p-2 w-2/3 mx-auto">
                                     <div class=" relative">
-                                        <label for="category" class="leading-7 text-sm text-gray-600">商品カテゴリー</label>
+                                        <label for="category" class="flex leading-7 text-sm text-gray-600">
+                                            <div>カテゴリー</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <select name='category' id="category" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" >
                                             @foreach ($categories as $category)
                                               <optgroup label="{{ $category->name }}">

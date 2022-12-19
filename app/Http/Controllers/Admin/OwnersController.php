@@ -24,45 +24,17 @@ class OwnersController extends Controller
 
     public function index()
     {
-        // $date_now = Carbon::now();
-        // $date_parse = Carbon::parse(now());
-        // echo $date_now->year;
-        // echo $date_parse;
-
-
-        // $e_all = Owner::all();
-
-        // $q_get = DB::table('owners')->select('name', 'created_at')->get();
-        // $q_first = DB::table('owners')->select('name')->first();
-
-        // $c_test = collect([
-        //   'name' => 'てすと'
-        //   ]);
-
-        // dd($e_all,$q_get, $q_first, $c_test);
-        $owners = Owner::select('id', 'name', 'email', 'created_at')->paginate(10);
+        $owners = Owner::select('id', 'name', 'email', 'created_at')->orderBy('id', 'desc')->paginate(10);
         return view('admin.owners.index', compact('owners'));
     }
 
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.owners.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -110,25 +82,17 @@ class OwnersController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function edit($id)
     {
         $owner = Owner::findOrFail($id);
         return view('admin.owners.edit', compact('owner'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function update(Request $request, $id)
     {
         $owner = Owner::findOrFail($id);
@@ -145,12 +109,7 @@ class OwnersController extends Controller
             ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         Owner::findOrFail($id)->delete(); //ソフトデリート
@@ -165,9 +124,10 @@ class OwnersController extends Controller
 
     public function expiredOwnerIndex()
     {
-        $expiredOwners = Owner::onlyTrashed()->get();
+        $expiredOwners = Owner::onlyTrashed()->orderBy('id', 'desc')->get();
         return view('admin.expired-owners', compact('expiredOwners'));
     }
+
 
     public function expiredOwnerDestroy($id)
     {
@@ -176,6 +136,16 @@ class OwnersController extends Controller
         ->with([
             'message' => 'メーカー情報を完全に削除しました。',
             'status' => 'alert'
+        ]);
+    }
+
+    public function expiredOwnerRestore($id)
+    {
+        Owner::onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->route('admin.owners.index')
+        ->with([
+            'message' => 'メーカー情報を復元しました。',
+            'status' => 'info'
         ]);
     }
 }

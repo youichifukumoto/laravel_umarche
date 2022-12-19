@@ -23,7 +23,10 @@
                             <div class="-m-2">
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="name" class="leading-7 text-sm text-gray-600">店舗名</label>
+                                        <label for="name" class="flex leading-7 text-sm text-gray-600">
+                                            <div>顧客名</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="text" id="name" name="name" value="{{ $user->name }}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -34,7 +37,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
+                                        <label for="email" class="flex leading-7 text-sm text-gray-600">
+                                            <div>メールアドレス</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="email" id="email" name="email" value="{{ $user->email }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -45,7 +51,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="betting_rate" class="leading-7 text-sm text-gray-600">掛け率</label>
+                                        <label for="betting_rate" class="flex leading-7 text-sm text-gray-600">
+                                            <div>掛け率</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <div class="flex">
                                             <input type="text" id="betting_rate" name="betting_rate" value="{{ $user->betting_rate }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                             <span class="flex items-center ml-1">％</span>
@@ -59,7 +68,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
+                                        <label for="password" class="flex leading-7 text-sm text-gray-600">
+                                            <div>パスワード</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="password" id="password" name="password" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
@@ -70,7 +82,10 @@
                                 </div>
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
-                                        <label for="password_confirmation" class="leading-7 text-sm text-gray-600">パスワード確認</label>
+                                        <label for="password_confirmation" class="flex leading-7 text-sm text-gray-600">
+                                            <div>パスワード確認</div>
+                                            <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+                                        </label>
                                         <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     <div class="text-sm text-red-600">
