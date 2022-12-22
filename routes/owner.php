@@ -13,16 +13,7 @@ use App\Http\Controllers\Owner\UsersController;
 use App\Http\Controllers\Owner\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Owner\ProductController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 // Route::get('/', function () {
 //     return view('owner.welcome');
@@ -37,6 +28,9 @@ Route::prefix('brands')->middleware('auth:owners')->group(function () {
 Route::prefix('expired-users')->middleware('auth:owners')->group(function () {
     Route::get('index', [UsersController::class, 'expiredUserIndex'])->name('expired-users.index');
     Route::post('destroy/{user}', [UsersController::class, 'expiredUserDestroy'])->name('expired-users.destroy');
+    Route::get('restore/{user}', [UsersController::class, 'expiredUserRestore'])->name('expired-users.restore');
+    Route::get('restore_all', [UsersController::class, 'expiredUserRestoreAll'])->name('expired-users.restoreAll');
+
 });
 
 Route::resource('users', UsersController::class)

@@ -57,7 +57,7 @@
                                     <div class="p-2 w-2/3 mx-auto">
                                         <div class="relative">
                                             <div class="w-full bg-gray-100 bg-opacity-50 rounded focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{
-                                          $secondaryCategory->praimarycategory->name }}</div>
+                                          $secondaryCategory->primaryCategory->name }}</div>
                                         </div>
                                     </div> --}}
                                 <div class="p-2 w-full flex justify-around mt-4">

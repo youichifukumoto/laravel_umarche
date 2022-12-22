@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 use Throwable;
 use Illuminate\Support\Facades\Log;
 
+
 class OwnersController extends Controller
 {
 
@@ -129,6 +130,29 @@ class OwnersController extends Controller
     }
 
 
+    public function expiredOwnerRestore($id)
+    {
+        $user = Owner::onlyTrashed()->findOrFail($id)->restore();
+
+        return redirect()->route('admin.owners.index')
+        ->with([
+            'message' => 'メーカー情報を復元しました。',
+            'status' => 'info'
+        ]);
+    }
+
+    public function expiredOwnerRestoreAll()
+    {
+        $user = Owner::onlyTrashed()->restore();
+
+        return redirect()->route('admin.owners.index')
+        ->with([
+            'message' => 'メーカー情報を全件復元しました。',
+            'status' => 'info'
+        ]);
+    }
+
+
     public function expiredOwnerDestroy($id)
     {
         Owner::onlyTrashed()->findOrFail($id)->forceDelete();
@@ -136,16 +160,6 @@ class OwnersController extends Controller
         ->with([
             'message' => 'メーカー情報を完全に削除しました。',
             'status' => 'alert'
-        ]);
-    }
-
-    public function expiredOwnerRestore($id)
-    {
-        Owner::onlyTrashed()->findOrFail($id)->restore();
-        return redirect()->route('admin.owners.index')
-        ->with([
-            'message' => 'メーカー情報を復元しました。',
-            'status' => 'info'
         ]);
     }
 }

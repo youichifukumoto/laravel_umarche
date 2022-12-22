@@ -120,15 +120,27 @@ class UsersController extends Controller
     }
 
 
-    // public function expiredUserRestore($id)
-    // {
-    //     User::onlyTrashed()->findOrFail($id)->restore();
-    //     return redirect()->route('owner.users.index')
-    //     ->with([
-    //         'message' => 'ショップ情報を復元しました。',
-    //         'status' => 'info'
-    //     ]);
-    // }
+    public function expiredUserRestore($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id)->restore();
+
+        return redirect()->route('owner.users.index')
+        ->with([
+            'message' => 'ショップ情報を復元しました。',
+            'status' => 'info'
+        ]);
+    }
+
+    public function expiredUserRestoreAll()
+    {
+        $user = User::onlyTrashed()->restore();
+
+        return redirect()->route('owner.users.index')
+        ->with([
+            'message' => 'ショップ情報を全件復元しました。',
+            'status' => 'info'
+        ]);
+    }
 
 
 

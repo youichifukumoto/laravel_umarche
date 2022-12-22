@@ -16,6 +16,9 @@
                        <x-flash-message status="session('status')"/>
                        @if (count($expiredUsers) > 0)
                         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
+                             <div class="flex justify-end mb-4 mt-6">
+                                <button onclick="location.href='restore_all'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">全件復元</button>
+                             </div>
                         <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
@@ -35,12 +38,12 @@
                                 <td class="px-4 py-3">{{ $user->betting_rate }}％</td>
                                 <td class="px-4 py-3">{{ $user->deleted_at}}</td>
                                 <td class="px-4 py-3">
-                                <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded">復元</a>
-                                   </td>
+                                   <a href="restore/{{ $user->id }}"  class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded">復元</a>
+                                </td>
                                 <form id="delete_{{$user->id}}" method="POST" action="{{ route('owner.expired-users.destroy',  ['user'=>$user->id])}}">
                                     @csrf
                                    <td class="px-4 py-3">
-                                <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-400 rounded ">完全に削除</a>
+                                      <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-400 rounded ">完全に削除</a>
                                    </td>
                                 </form>
                             </tr>
@@ -53,11 +56,6 @@
                         </div>
                     </div>
                     </section>
-                    {{--クエリービルダー
-                     @foreach ($q_get as $q_owner)
-                    {{ $q_owner->name }}
-                    {{ Carbon\Carbon::parse($q_owner->created_at)->diffForHumans() }}
-                    @endforeach--}}
                 </div>
             </div>
         </div>

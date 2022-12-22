@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PrimaryCategory;
+use App\Models\Owner;
 use App\Models\SecondaryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;//クエリビルダー
@@ -14,11 +15,14 @@ class SecondaryCategoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+
     }
 
     public function index()
     {
-        $secondaryCategories = SecondaryCategory::all();
+        $secondaryCategories = SecondaryCategory::select('id', 'primary_category_id', 'name', 'sort_order', 'created_at')->orderBy('id', 'desc')->paginate(10);
+
+        // $primaryInfo = PrimaryCategory::select('id','name')->where('id', SecondaryCategory::find('primary_category_id'))->get();
 
         return view('admin.SecondaryCategory.index', compact('secondaryCategories'));
     }
@@ -33,18 +37,20 @@ class SecondaryCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'primary_category_id' => ['required', 'string', 'max:30'],
             'name' => ['required', 'string', 'max:30'],
             'sort_order' => ['required', 'integer'],
         ]);
 
 
-        $primary = PrimaryCategory::create([
+       secondaryCategory::create([
+            'primary_category_id' =>$request->primary_category_id,
             'name' => $request->name,
             'sort_order' => $request->sort_order,
         ]);
 
         return redirect()
-            ->route('admin.primaryCategory.index')
+            ->route('admin.secondaryCategory.index')
             ->with([
                 'message' => 'セカンドカテゴリー登録を実施しました。',
                 'status' => 'info'

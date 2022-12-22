@@ -16,6 +16,9 @@
                        <x-flash-message status="session('status')"/>
                         @if (count($expiredOwners) > 0)
                         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
+                                <div class="flex justify-end mb-4 mt-6">
+                                <button onclick="location.href='restore_all'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">全件復元</button>
+                             </div>
                         <table class="table-auto w-full text-left whitespace-no-wrap">
                              <thead>
                             <tr>
@@ -34,8 +37,8 @@
                                 {{-- <td class="px-4 py-3">{{ $owner->created_at}}</td> --}}
                                 <td class="px-4 py-3">{{ $owner->deleted_at}}</td>
                                 <td class="px-4 py-3">
-                                <a href="#" data-id="{{ $owner->id }}" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded">復元</a>
-                                   </td>
+                                    <a href="restore/{{ $owner->id }}"  class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded">復元</a>
+                                </td>
                                 <form id="delete_{{$owner->id}}" method="POST" action="{{ route('admin.expired-owners.destroy',  ['owner'=>$owner->id])}}">
                                     @csrf
                                    <td class="px-4 py-3">

@@ -15,9 +15,9 @@
                        <x-flash-message status="session('status')"/>
 
                         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
-                             {{-- <div class="flex justify-end mb-4 mt-6">
+                             <div class="flex justify-end mb-4 mt-6">
                                 <button onclick="location.href='{{ route('admin.secondaryCategory.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-400 rounded text-lg">新規登録</button>
-                             </div> --}}
+                             </div>
                            <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
@@ -33,7 +33,7 @@
                             <tbody>
                             @foreach ($secondaryCategories as $secondaryCategory)
                             <tr>
-                                <td class="md:px-4 py-3">{{ $secondaryCategory->primary_category_id }}</td>
+                                <td class="md:px-4 py-3">{{ $secondaryCategory->primary_category_id}}</td>
                                 <td class="md:px-4 py-3">{{ $secondaryCategory->id }}</td>
                                 <td class="md:px-4 py-3">{{ $secondaryCategory->name }}</td>
                                 {{-- <td class="px-4 py-3">{{ $owner->created_at->diffForHumans()}}</td> --}}
@@ -41,17 +41,18 @@
                                 <td class="md:px-4 py-3">
                                 <button onclick="location.href='{{ route('admin.secondaryCategory.edit', ['secondaryCategory' => $secondaryCategory->id])}}'" class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-400 rounded ">編集</button>
                                 </td>
-                                {{-- <form id="delete_{{$secondaryCategory->id}}" method="POST" action="{{ route('admin.secondaryCategory.destroy', ['secondaryCategory' => $secondaryCategory->id])}}">
+                                <form id="delete_{{$secondaryCategory->id}}" method="POST" action="{{ route('admin.secondaryCategory.destroy', ['secondaryCategory' => $secondaryCategory->id])}}">
                                     @csrf
                                     @method('delete')
                                    <td class="md:px-4 py-3">
                                 <a href="#" data-id="{{ $secondaryCategory->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-400 rounded ">削除</a>
                                    </td>
-                                </form> --}}
+                                </form>
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        {{ $secondaryCategories->links() }}
                         </div>
                     </div>
                     </section>
