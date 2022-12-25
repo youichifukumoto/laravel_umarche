@@ -21,6 +21,8 @@
                            <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">メーカーID</th>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">顧客ID</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">店舗名</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">掛け率</th>
@@ -32,6 +34,8 @@
                             <tbody>
                             @foreach ($users as $user)
                             <tr>
+                                <td class="md:px-4 py-3">{{ $user->owner_id }}</td>
+                                <td class="md:px-4 py-3">{{ $user->id }}</td>
                                 <td class="md:px-4 py-3">{{ $user->name }}</td>
                                 <td class="md:px-4 py-3">{{ $user->email }}</td>
                                 <td class="md:px-4 py-3">{{ $user->betting_rate }}％</td>

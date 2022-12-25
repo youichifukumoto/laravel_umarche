@@ -22,7 +22,8 @@
                         <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
-                                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ショップ名</th>
+                                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">ID</th>
+                                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">顧客名</th>
                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">掛け率</th>
                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">期限切れ日</th>
@@ -33,6 +34,7 @@
                             <tbody>
                             @foreach ($expiredUsers as $user)
                             <tr>
+                                <td class="px-4 py-3">{{ $user->id }}</td>
                                 <td class="px-4 py-3">{{ $user->name }}</td>
                                 <td class="px-4 py-3">{{ $user->email }}</td>
                                 <td class="px-4 py-3">{{ $user->betting_rate }}％</td>

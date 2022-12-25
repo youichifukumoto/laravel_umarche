@@ -22,6 +22,12 @@
                             <div class="-m-2">
                                 <div class="p-2 w-2/3 mx-auto">
                                     <div class="relative">
+                                        <div  class="mt-10  text-sm text-gray-600">メーカーID</div>
+                                    </div>
+                                    <div class="relative">
+                                        <div class="w-full mb-10 bg-gray-100 bg-opacity-50 rounded focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $ownerId->id }}</div>
+                                    </div>
+                                    <div class="relative">
                                         <label for="name" class="flex leading-7 text-sm text-gray-600">
                                             <div>顧客名</div>
                                             <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>

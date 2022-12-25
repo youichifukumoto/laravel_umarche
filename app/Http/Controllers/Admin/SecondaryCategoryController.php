@@ -28,7 +28,8 @@ class SecondaryCategoryController extends Controller
 
     public function create()
     {
-        return view('admin.secondaryCategory.create');
+        $primaries = PrimaryCategory::select('id', 'name')->get();
+        return view('admin.secondaryCategory.create', compact('primaries'));
     }
 
 

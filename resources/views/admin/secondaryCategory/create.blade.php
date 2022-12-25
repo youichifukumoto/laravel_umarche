@@ -53,6 +53,7 @@
                                         <label for="primary_category_id" class="flex leading-7 text-sm text-gray-600">
                                             <div>プライマリーカテゴリーID</div>
                                             <div class="leading-7 ml-2 text-sm text-red-600">※必須</div>
+
                                         </label>
                                         <input type="text" autofocus id="primary_category_id" name="primary_category_id" value="{{ old('primary_category_id')}}" repuired class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
@@ -61,6 +62,13 @@
                                         <li>{{$errors -> first('primary_category_id')}}</li>
                                         @endif
                                     </div>
+                                    <div class="mt-6">（プライマリーカテゴリ一覧）</div>
+                                    @foreach ($primaries as $primary)
+                                    <div class="flex ">
+                                        <div class="mr-6">{{ $primary->id }}.</div>
+                                        <div>{{ $primary->name}}</div>
+                                    </div>
+                                    @endforeach
                                 </div>
                                 <div class="p-2 w-full flex justify-around mt-4">
                                     <button  type="button" onclick="location.href='{{ route('admin.secondaryCategory.index') }}'" class="text-white bg-gray-400 border-0 py-2 px-8 focus:outline-none hover:bg-gray-300 rounded text-lg">戻る</button>

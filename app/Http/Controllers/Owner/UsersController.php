@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 use App\Models\User; //エロくアント
 use Illuminate\Support\Facades\DB; //クエリビルダー
@@ -18,9 +19,12 @@ class UsersController extends Controller
         $this->middleware('auth:owners');
     }
 
+
     public function index()
     {
-        $users = User::select('id','name', 'email', 'betting_rate', 'created_at')
+        $users = User::select('id', 'owner_id', 'name', 'email', 'betting_rate', 'created_at')
+        ->where('owner_id', Auth::id())
+        ->orderBy('id','desc')
         ->paginate(20);
 
         return view('owner.users.index', compact('users'));
@@ -31,7 +35,9 @@ class UsersController extends Controller
 
     public function create()
     {
-        return view('owner.users.create');
+        $ownerId = Owner::findOrFail(Auth::id());
+
+        return view('owner.users.create', compact('ownerId'));
     }
 
 
@@ -46,8 +52,8 @@ class UsersController extends Controller
             'password' => ['required','string', 'confirmed', 'min:8', Rules\Password::defaults()],
         ]);
 
-
         User::create([
+            'owner_id' => Owner::findOrFail(Auth::id())->id,
             'name' => $request->name,
             'email' => $request->email,
             'betting_rate' => $request->betting_rate,
@@ -115,7 +121,8 @@ class UsersController extends Controller
 
     public function expiredUserIndex()
     {
-        $expiredUsers = User::onlyTrashed()->get();
+        $expiredUsers = User::onlyTrashed()
+        ->where('owner_id', Auth::id())->get();
         return view('owner.expired-users', compact('expiredUsers'));
     }
 
