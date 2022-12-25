@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                       <x-flash-message status="session('status')"/>
                     @foreach ($brands as $brand)
-                    <div class="p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
+                    <div class="md:w-1/2 p-4"> {{-- このw-2を記載すると画面の表示を2分割している--}}
                          <a href="{{ route('owner.brands.edit', ['brand' => $brand->id]) }}">
                       <div class="border rounded-md p-4">
                           <div class="mb-4">

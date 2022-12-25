@@ -21,9 +21,9 @@
                            <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                             <tr>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">プライマリーid</th>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">プライマリー名</th>
                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">id</th>
-                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">セコンドカテゴリー名</th>
+                                <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">セコンダリー名</th>
                                 <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">ソートオーダー</th>
                                 {{-- <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">登録日</th> --}}
                                 <th class="md:px-4 py-3  title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
@@ -33,7 +33,7 @@
                             <tbody>
                             @foreach ($secondaryCategories as $secondaryCategory)
                             <tr>
-                                <td class="md:px-4 py-3">{{ $secondaryCategory->primary_category_id}}</td>
+                                <td class="md:px-4 py-3">{{ $secondaryCategory->primary->name}}</td>
                                 <td class="md:px-4 py-3">{{ $secondaryCategory->id }}</td>
                                 <td class="md:px-4 py-3">{{ $secondaryCategory->name }}</td>
                                 {{-- <td class="px-4 py-3">{{ $owner->created_at->diffForHumans()}}</td> --}}

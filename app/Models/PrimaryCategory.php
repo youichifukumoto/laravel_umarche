@@ -22,3 +22,4 @@ class PrimaryCategory extends Model
 }
 
 
+

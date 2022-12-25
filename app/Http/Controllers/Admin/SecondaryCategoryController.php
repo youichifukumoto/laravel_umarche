@@ -15,14 +15,12 @@ class SecondaryCategoryController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-
     }
 
     public function index()
     {
         $secondaryCategories = SecondaryCategory::select('id', 'primary_category_id', 'name', 'sort_order', 'created_at')->orderBy('id', 'desc')->paginate(10);
 
-        // $primaryInfo = PrimaryCategory::select('id','name')->where('id', SecondaryCategory::find('primary_category_id'))->get();
 
         return view('admin.SecondaryCategory.index', compact('secondaryCategories'));
     }
